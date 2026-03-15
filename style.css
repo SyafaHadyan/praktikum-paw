@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+:root {
+  --color-bg:         #ffeffa;
+  --color-accent:     #633b48;
+  --color-text:       #1d1b20;
+  --color-text-light: #000000;
+
+  --page-padding:     48px;
+  --card-size:        384px;
+  --card-border:      4px solid var(--color-accent);
+  --grid-gap:         64px;
+
+  --font-family:      'Noto Sans JP', sans-serif;
+
+  --fs-display:       57px;
+  --lh-display:       64px;
+  --ls-display:       -0.25px;
+
+  --fs-section:       36px;
+  --lh-section:       44px;
+
+  --fs-body:          16px;
+  --lh-body:          24px;
+  --ls-body:          0.5px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-bg);
+  font-family: var(--font-family);
+  color: var(--color-text);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  display: block;
+}
+
+.gallery-page {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: var(--page-padding);
+}
+
+.gallery-title {
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  color: var(--color-accent);
+  font-weight: 400;
+  text-align: center;
+}
+
+.gallery-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--grid-gap);
+  justify-content: center;
+  padding: 8px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.card:hover {
+  opacity: 0.85;
+}
+
+.card-picture {
+  width: var(--card-size);
+  height: var(--card-size);
+  border: var(--card-border);
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.card-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.card-name {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-body);
+  color: var(--color-text-light);
+  text-align: center;
+  font-weight: 400;
+}
+
+.detail-page {
+  display: flex;
+  gap: 32px;
+  padding: var(--page-padding);
+  min-height: 100vh;
+}
+
+.back-nav {
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  font-size: 32px;
+  color: var(--color-text);
+  line-height: 1;
+  padding-top: 8px;
+  transition: opacity 0.2s ease;
+}
+
+.back-nav:hover {
+  opacity: 0.65;
+}
+
+.detail-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.detail-picture {
+  width: var(--card-size);
+  height: var(--card-size);
+  border: var(--card-border);
+  overflow: hidden;
+  position: relative;
+}
+
+.detail-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.detail-name {
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  color: var(--color-accent);
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.detail-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+}
+
+.detail-section h2 {
+  font-size: var(--fs-section);
+  line-height: var(--lh-section);
+  font-weight: 400;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.detail-section p {
+  font-size: var(--fs-section);
+  line-height: var(--lh-section);
+  font-weight: 400;
+  color: var(--color-text);
+}
