@@ -2,7 +2,7 @@
 
 ## Deployment with Docker
 
-- Run the Container ([syafa/praktikum-paw](https://hub.docker.com/r/syafa/praktikum-paw)):
+Run the Container ([syafa/praktikum-paw](https://hub.docker.com/r/syafa/praktikum-paw))
 
 ### Manual Build
 
