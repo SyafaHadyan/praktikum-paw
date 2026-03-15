@@ -4,12 +4,6 @@
 
 - Run the Container ([syafa/praktikum-paw](https://hub.docker.com/r/syafa/praktikum-paw)):
 
-```sh
-docker compose up -d
-```
-
-> Check logs with `docker logs -f praktikum-paw`
-
 ### Manual Build
 
 A Dockerfile is provided in the root directory of this repository
