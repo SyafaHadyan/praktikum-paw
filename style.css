@@ -39,6 +39,48 @@ body {
   background-color: var(--color-bg);
   font-family: var(--font-family);
   color: var(--color-text);
+  padding-top: 64px;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background-color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 var(--page-padding);
+  z-index: 100;
+}
+
+.navbar-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 20px;
+  color: rgba(255, 255, 255, 0.75);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  border-radius: 4px;
+}
+
+.navbar-link:hover,
+.navbar-link--active {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.navbar-en {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.navbar-jp {
+  font-size: 12px;
+  opacity: 0.85;
 }
 
 a {

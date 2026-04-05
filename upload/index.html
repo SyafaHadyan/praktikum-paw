@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload Photo — ギャラリー</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/" class="navbar-link">
+      <span class="navbar-en">Homepage</span>
+      <span class="navbar-jp">ホーム</span>
+    </a>
+    <a href="/upload/" class="navbar-link navbar-link--active">
+      <span class="navbar-en">Upload</span>
+      <span class="navbar-jp">アップロード</span>
+    </a>
+  </nav>
+  <main class="upload-page">
+
+    <h1 class="upload-title">Upload Photo</h1>
+
+    <div class="upload-body">
+
+      <div style="display:flex;flex-direction:column;gap:32px;align-items:center;">
+
+        <div class="drop-zone" id="drop-zone">
+          <span class="drop-zone__icon">📁</span>
+          <span class="drop-zone__text">Click or drag photo here</span>
+          <span class="drop-zone__hint">Only .jpg and .png</span>
+          <input type="file" id="file-input" accept=".jpg,.jpeg,.png" />
+        </div>
+
+        <div class="preview-wrap">
+          <p class="preview-label">Preview</p>
+          <div class="card-picture preview-frame">
+            <p class="preview-frame__placeholder" id="preview-placeholder">Photo preview will appear here</p>
+            <img id="preview-img" alt="Preview" />
+          </div>
+        </div>
+
+      </div>
+
+      <div class="upload-panel">
+
+        <div id="alert-error"   class="alert alert--error"></div>
+        <div id="alert-success" class="alert alert--success"></div>
+
+        <div class="info-section" id="info-section" style="display:none;">
+          <h2>File Information</h2>
+          <table class="info-table">
+            <tr><td>Original name</td>         <td id="td-original"></td></tr>
+            <tr><td>Name (lowercase)</td>      <td id="td-lower"></td></tr>
+            <tr><td>Name without extension</td><td id="td-base"></td></tr>
+            <tr><td>Extension</td>             <td id="td-ext"></td></tr>
+            <tr><td>Saved name</td>            <td id="td-saved"></td></tr>
+            <tr><td>Size</td>                  <td id="td-size"></td></tr>
+            <tr><td>MIME type</td>             <td id="td-type"></td></tr>
+          </table>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn--primary" id="btn-upload" disabled>Save to Directory</button>
+          <button class="btn"              id="btn-reset"  disabled>Reset</button>
+        </div>
+
+        <p style="font-size:13px;color:#999;line-height:1.6;">
+          String operations applied: name converted to <em>lowercase</em>,
+          spaces &amp; special characters replaced with <code>_</code>,
+          and a timestamp added to prevent name conflicts.
+        </p>
+
+      </div>
+    </div>
+
+    <div class="saved-section" id="saved-section" style="display:none;">
+      <h2>Saved Photos</h2>
+      <div class="saved-grid" id="saved-grid"></div>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

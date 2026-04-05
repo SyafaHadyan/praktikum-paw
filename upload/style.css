@@ -1,0 +1,214 @@
+.upload-page {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: var(--page-padding);
+  min-height: 100vh;
+}
+
+.upload-title {
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  color: var(--color-accent);
+  font-weight: 400;
+  text-align: center;
+}
+
+.upload-body {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.drop-zone {
+  width: var(--card-size);
+  height: var(--card-size);
+  border: 4px dashed var(--color-accent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.drop-zone:hover,
+.drop-zone.dragover {
+  background-color: rgba(99, 59, 72, 0.07);
+}
+
+.drop-zone__icon {
+  font-size: 56px;
+  line-height: 1;
+}
+
+.drop-zone__text {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--color-accent);
+  text-align: center;
+  padding: 0 24px;
+}
+
+.drop-zone__hint {
+  font-size: 13px;
+  color: #999;
+}
+
+#file-input { display: none; }
+
+.preview-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.preview-label {
+  font-size: var(--fs-body);
+  color: var(--color-text-light);
+  letter-spacing: var(--ls-body);
+}
+
+.card-picture.preview-frame {
+  width: var(--card-size);
+  height: var(--card-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-frame__placeholder {
+  font-size: var(--fs-body);
+  color: #bbb;
+  text-align: center;
+  padding: 24px;
+}
+
+#preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: none;
+}
+
+.upload-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 360px;
+}
+
+.info-section h2 {
+  font-size: var(--fs-section);
+  line-height: var(--lh-section);
+  font-weight: 400;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-body);
+}
+
+.info-table tr {
+  border-bottom: 1px solid rgba(99, 59, 72, 0.15);
+}
+
+.info-table td {
+  padding: 6px 4px;
+  vertical-align: top;
+}
+
+.info-table td:first-child {
+  color: #777;
+  white-space: nowrap;
+  width: 155px;
+}
+
+.info-table td:last-child {
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.alert {
+  padding: 10px 14px;
+  font-size: var(--fs-body);
+  display: none;
+}
+
+.alert--error   { background: #fde8e8; border: 1px solid #e57373; color: #c62828; }
+.alert--success { background: #e8f5e9; border: 1px solid #81c784; color: #2e7d32; }
+
+.btn-row { display: flex; gap: 12px; }
+
+.btn {
+  padding: 10px 24px;
+  font-size: var(--fs-body);
+  font-family: var(--font-family);
+  border: 2px solid var(--color-accent);
+  background: transparent;
+  color: var(--color-accent);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover:not(:disabled) { background-color: var(--color-accent); color: #fff; }
+.btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.btn--primary { background-color: var(--color-accent); color: #fff; }
+.btn--primary:hover:not(:disabled) { background-color: #4a2a36; }
+
+.saved-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.saved-section h2 {
+  font-size: var(--fs-section);
+  line-height: var(--lh-section);
+  font-weight: 400;
+  color: var(--color-accent);
+  text-align: center;
+}
+
+.saved-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+}
+
+.saved-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.saved-card .card-picture {
+  width: 220px;
+  height: 220px;
+}
+
+.saved-card .card-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.card-name.saved-name {
+  font-size: 13px;
+  max-width: 220px;
+  word-break: break-all;
+}
