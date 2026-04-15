@@ -1,0 +1,5 @@
+Baris pertama: First Line
+Baris kedua: Linux
+Baris ketiga: PHP
+Baris keempat: HTML
+Baris kelima: Testing

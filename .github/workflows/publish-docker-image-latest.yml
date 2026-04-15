@@ -31,4 +31,4 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: syafa/praktikum-paw:bab4
+          tags: syafa/praktikum-paw:bab5
