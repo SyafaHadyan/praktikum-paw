@@ -1,6 +1,6 @@
 services:
   nginx:
-    image: syafa/praktikum-paw:bab5
+    image: syafa/praktikum-paw:bab6
     container_name: nginx-php
     ports:
       - "8080:80"
@@ -10,3 +10,5 @@ services:
   php:
     image: php:8.3-fpm-alpine
     container_name: php
+    volumes:
+      - .:/var/www/html
