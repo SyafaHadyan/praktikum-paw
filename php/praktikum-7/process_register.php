@@ -12,13 +12,12 @@ $email            = trim($_POST['email']            ?? '');
 $password         = $_POST['password']              ?? '';
 $password_confirm = $_POST['password_confirm']      ?? '';
 
-$redirect_back = '/php/praktikum-7/register.php?error=%s'
-  . '&full_name=' . urlencode($full_name)
-  . '&username='  . urlencode($username)
-  . '&email='     . urlencode($email);
+$query_back = '&full_name=' . urlencode($full_name)
+  . '&username=' . urlencode($username)
+  . '&email='    . urlencode($email);
 
 if ($password !== $password_confirm) {
-  header(sprintf("Location: $redirect_back", 'password_mismatch'));
+  header('Location: /php/praktikum-7/register.php?error=password_mismatch' . $query_back);
   exit;
 }
 
@@ -33,9 +32,9 @@ try {
     $stmt2 = $conn->prepare("SELECT id FROM users WHERE username = :username");
     $stmt2->execute([':username' => $username]);
     if ($stmt2->fetch()) {
-      header(sprintf("Location: $redirect_back", 'duplicate_username'));
+      header('Location: /php/praktikum-7/register.php?error=duplicate_username' . $query_back);
     } else {
-      header(sprintf("Location: $redirect_back", 'duplicate_email'));
+      header('Location: /php/praktikum-7/register.php?error=duplicate_email' . $query_back);
     }
     exit;
   }
@@ -55,6 +54,6 @@ try {
   header('Location: /php/praktikum-7/login.php?registered=1');
   exit;
 } catch (PDOException $e) {
-  header(sprintf("Location: $redirect_back", 'db'));
+  header('Location: /php/praktikum-7/register.php?error=db' . $query_back);
   exit;
 }
