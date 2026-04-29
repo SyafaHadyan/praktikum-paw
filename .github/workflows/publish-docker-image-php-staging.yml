@@ -1,4 +1,4 @@
-name: ci
+name: ci-php-staging
 
 on:
   pull_request:
