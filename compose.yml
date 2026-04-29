@@ -12,6 +12,6 @@ services:
     image: syafa/praktikum-paw:latest-php-bab7
     restart: always
     container_name: php
+    env_file: .env
     volumes:
       - .:/var/www/html
-    env_file: .env
