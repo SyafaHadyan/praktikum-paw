@@ -154,6 +154,125 @@ img {
   font-weight: 400;
 }
 
+.gallery-controls {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.control-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: var(--color-accent);
+}
+
+.control-label .navbar-en {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.control-label .navbar-jp {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.search-input {
+  height: 44px;
+  width: 320px;
+  padding: 0 16px;
+  border: 2px solid var(--color-accent);
+  border-radius: 4px;
+  background: transparent;
+  font-family: var(--font-family);
+  font-size: var(--fs-body);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input::placeholder {
+  color: rgba(99, 59, 72, 0.45);
+}
+
+.search-input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(99, 59, 72, 0.15);
+}
+
+.random-btn {
+  height: 44px;
+  padding: 0 28px;
+  border: 2px solid var(--color-accent);
+  border-radius: 4px;
+  background: transparent;
+  font-family: var(--font-family);
+  color: var(--color-accent);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.random-btn .navbar-en {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.random-btn .navbar-jp {
+  font-size: 11px;
+  opacity: 0.75;
+}
+
+.random-btn:hover {
+  background-color: var(--color-accent);
+  color: #fff;
+}
+
+.random-btn:hover .navbar-jp {
+  opacity: 0.9;
+}
+
+.no-results {
+  text-align: center;
+  color: var(--color-accent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.no-results .navbar-en {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.no-results .navbar-jp {
+  font-size: 14px;
+  opacity: 0.75;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.card--hidden {
+  display: none !important;
+}
+
 .detail-page {
   display: flex;
   gap: 32px;

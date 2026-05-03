@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ギャラリー</title>
   <link rel="stylesheet" href="./style.css" />
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
   <nav class="navbar">
@@ -35,6 +36,34 @@
   </nav>
   <main class="gallery-page">
     <h1 class="gallery-title">ギャラリー</h1>
+
+    <div class="gallery-controls">
+
+      <div class="control-group">
+        <label class="control-label" for="search-input">
+          <span class="navbar-en">Search</span>
+          <span class="navbar-jp">検索</span>
+        </label>
+        <input
+          id="search-input"
+          class="search-input"
+          type="text"
+          placeholder="Character name … / キャラクター名 …"
+          autocomplete="off"
+        />
+      </div>
+
+      <button id="random-btn" class="random-btn" type="button">
+        <span class="navbar-en">Random</span>
+        <span class="navbar-jp">ランダム</span>
+      </button>
+
+    </div>
+
+    <p id="no-results" class="no-results hidden">
+      <span class="navbar-en">No characters found.</span>
+      <span class="navbar-jp">キャラクターが見つかりません。</span>
+    </p>
 
     <div class="gallery-grid">
 
@@ -96,5 +125,6 @@
 
     </div>
   </main>
+  <script src="./index.js"></script>
 </body>
 </html>
