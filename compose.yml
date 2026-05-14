@@ -1,6 +1,6 @@
 services:
   nginx:
-    image: syafa/praktikum-paw:latest-nginx-bab7
+    image: syafa/praktikum-paw:latest-nginx-bab8
     restart: always
     container_name: nginx-php
     ports:
@@ -9,7 +9,7 @@ services:
       - php
 
   php:
-    image: syafa/praktikum-paw:latest-php-bab7
+    image: syafa/praktikum-paw:latest-php-bab8
     restart: always
     container_name: php
     env_file: .env

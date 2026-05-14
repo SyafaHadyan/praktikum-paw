@@ -30,4 +30,4 @@ jobs:
           file: Dockerfile.php
           platforms: linux/amd64
           push: true
-          tags: syafa/praktikum-paw:latest-php-bab7
+          tags: syafa/praktikum-paw:latest-php-bab8
