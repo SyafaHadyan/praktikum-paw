@@ -30,4 +30,4 @@ jobs:
           file: Dockerfile.nginx
           platforms: linux/amd64
           push: true
-          tags: syafa/praktikum-paw:latest-nginx-bab8
+          tags: syafa/praktikum-paw:latest-nginx-bab9

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-Do Ajax</title>
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .todo-page {
+      padding: var(--page-padding);
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .todo-title {
+      font-size: var(--fs-section);
+      line-height: var(--lh-section);
+      color: var(--color-accent);
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .todo-form {
+      display: flex;
+      gap: 10px;
+    }
+
+    .todo-input {
+      flex: 1;
+      height: 44px;
+      padding: 0 14px;
+      border: 2px solid var(--color-accent);
+      border-radius: 4px;
+      background: #fff;
+      font-family: var(--font-family);
+      font-size: var(--fs-body);
+      color: var(--color-text);
+      outline: none;
+    }
+
+    .todo-btn {
+      height: 44px;
+      border: 2px solid var(--color-accent);
+      background: var(--color-accent);
+      color: #fff;
+      padding: 0 18px;
+      border-radius: 4px;
+      font-family: var(--font-family);
+      cursor: pointer;
+    }
+
+    .todo-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .todo-item {
+      border: 2px solid var(--color-accent);
+      border-radius: 4px;
+      background: #fff;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .todo-text {
+      flex: 1;
+      font-size: var(--fs-body);
+    }
+
+    .todo-text--done {
+      text-decoration: line-through;
+      opacity: 0.65;
+    }
+
+    .todo-delete {
+      border: 2px solid var(--color-accent);
+      background: transparent;
+      color: var(--color-accent);
+      border-radius: 4px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-family: var(--font-family);
+    }
+
+    .todo-message {
+      min-height: 24px;
+      color: var(--color-accent);
+      font-size: var(--fs-body);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <main class="todo-page">
+    <h1 class="todo-title">To-Do List</h1>
+
+    <div class="todo-form">
+      <input class="todo-input" type="text" id="taskInput" placeholder="Masukkan task..." />
+      <button class="todo-btn" id="addButton" type="button">Tambah</button>
+    </div>
+
+    <p class="todo-message" id="messageBox"></p>
+    <ul class="todo-list" id="taskList"></ul>
+  </main>
+
+  <script>
+    const taskInput = document.getElementById('taskInput');
+    const addButton = document.getElementById('addButton');
+    const taskList = document.getElementById('taskList');
+    const messageBox = document.getElementById('messageBox');
+
+    function setMessage(message = '') {
+      messageBox.textContent = message;
+    }
+
+    async function requestJson(url, options = {}) {
+      const response = await fetch(url, options);
+      const data = await response.json().catch(() => ({ error: 'Respon server tidak valid.' }));
+
+      if (!response.ok) {
+        throw new Error(data.error || `HTTP ${response.status}`);
+      }
+
+      return data;
+    }
+
+    async function loadTasks() {
+      try {
+        const data = await requestJson('api.php?action=get');
+        const tasks = data.tasks || [];
+        taskList.innerHTML = '';
+
+        if (tasks.length === 0) {
+          const emptyItem = document.createElement('li');
+          emptyItem.className = 'todo-item';
+          emptyItem.textContent = 'Belum ada task.';
+          taskList.appendChild(emptyItem);
+          return;
+        }
+
+        tasks.forEach((task) => {
+          const li = document.createElement('li');
+          li.className = 'todo-item';
+
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.checked = Boolean(task.completed);
+          checkbox.addEventListener('change', () => toggleTask(task.id, checkbox.checked));
+
+          const span = document.createElement('span');
+          span.className = `todo-text${task.completed ? ' todo-text--done' : ''}`;
+          span.textContent = task.task;
+
+          const deleteButton = document.createElement('button');
+          deleteButton.className = 'todo-delete';
+          deleteButton.type = 'button';
+          deleteButton.textContent = 'Hapus';
+          deleteButton.addEventListener('click', () => deleteTask(task.id));
+
+          li.appendChild(checkbox);
+          li.appendChild(span);
+          li.appendChild(deleteButton);
+          taskList.appendChild(li);
+        });
+      } catch (error) {
+        setMessage(`Gagal memuat task: ${error.message}`);
+      }
+    }
+
+    async function addTask() {
+      const task = taskInput.value.trim();
+      if (!task) {
+        setMessage('Task tidak boleh kosong.');
+        return;
+      }
+
+      try {
+        await requestJson('api.php?action=add', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: `task=${encodeURIComponent(task)}`
+        });
+
+        taskInput.value = '';
+        setMessage('Task berhasil ditambahkan.');
+        await loadTasks();
+      } catch (error) {
+        setMessage(`Gagal menambah task: ${error.message}`);
+      }
+    }
+
+    async function deleteTask(id) {
+      try {
+        await requestJson('api.php?action=delete', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: `id=${encodeURIComponent(id)}`
+        });
+
+        setMessage('Task berhasil dihapus.');
+        await loadTasks();
+      } catch (error) {
+        setMessage(`Gagal menghapus task: ${error.message}`);
+      }
+    }
+
+    async function toggleTask(id, completed) {
+      try {
+        await requestJson('api.php?action=toggle', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: `id=${encodeURIComponent(id)}&completed=${completed ? '1' : '0'}`
+        });
+
+        setMessage('Status task diperbarui.');
+        await loadTasks();
+      } catch (error) {
+        setMessage(`Gagal memperbarui status task: ${error.message}`);
+      }
+    }
+
+    addButton.addEventListener('click', addTask);
+    taskInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        addTask();
+      }
+    });
+
+    loadTasks();
+  </script>
+</body>
+</html>
