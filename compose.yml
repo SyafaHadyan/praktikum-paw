@@ -7,6 +7,8 @@ services:
       - "8080:80"
     depends_on:
       - php
+    volumes:
+      - .:/var/www/html
 
   php:
     image: syafa/praktikum-paw:latest-php-bab8
